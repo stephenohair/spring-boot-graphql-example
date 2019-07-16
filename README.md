@@ -63,7 +63,7 @@ Other files:
  
 
 ## GraphQL Schema
-The schema in this example defines the a query object called Person that a consumer is interested. It also has a query that returns all Person objects called 'allPeople'. 
+The schema in this example defines a query object called Person that a consumer is interested. It also has a query that returns all Person objects called 'allPeople'. 
 
 **Note:** It's important that the member variables of the Person entity match the Person fields in the GraphQL schema.
 
