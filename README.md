@@ -2,7 +2,7 @@
 
 # spring-boot-graphql-example
 
-This is a simple maven-based Java example that uses spring-boot, an H2 embedded in-memory database and Hibernate ORM to stand up a graphql service. This example is a self-contained example and is ready to play with after running ```mvn spring-boot:run```
+This is a simple maven-based Java example that uses spring-boot, an H2 embedded in-memory database and Hibernate ORM to stand up a graphql service. This example is a self-contained and ready to play with after running ```mvn spring-boot:run```
 
 The example defines a basic JPA annontated data model containing a single entity, Person. When spring-boot runs it takes that entity definition and creates an in-memory H2 embedded database with pre-poluated dummy data. The GraphQL service is then started and the H2 data is offered as a queryable repository via GraphQL services as a GraphQL API found at http://localhost:8080/.
 
