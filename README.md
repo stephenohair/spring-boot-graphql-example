@@ -1,6 +1,6 @@
 # spring-boot-graphql-example
 
-This is a simple maven-based Java example that uses spring-boot, a H2 embedded in-memory database and hibernate ORM to stand up a graphql service. This example is a self-contained example and is ready to play with after running ```mvn spring-boot:run```
+This is a simple maven-based Java example that uses spring-boot, an H2 embedded in-memory database and Hibernate ORM to stand up a graphql service. This example is a self-contained example and is ready to play with after running ```mvn spring-boot:run```
 
 ## Compiling and Running
 This project was compiled and tested using JDK8 and Maven 3.6.1.
@@ -18,6 +18,25 @@ The service is ready for use when you see a similar log line as below:
 ```
 ### Stopping the Service
 Use CTRL+C to stop.
+
+## Exploring the GraphQL Service
+In addition to a GraphQL service and API, this project starts up two graphical interfaces, GraphiQL and H2-Console to play around with.
+
+### GraphiQL 
+A web console that can be used to explore the schema and test querying the GraphQL API.
+Found at: http://localhost:8080
+
+The left-hand pane is used to input your client-side GraphQL queries. The right-hand pane displays the result returned back from this GraphQL service.
+
+![alt GraphiQL](src/docs/example-query.png)
+
+### H2-Console 
+
+A web console to manage the H2 in-memory database. Found at: http://localhost:8080/h2-console (login credentials are found in [application.properites](src/main/resources/application.properties))
+
+![alt H2-Console](src/docs/h2-console.png)
+
+The example defines a basic JPA annontated data model containing a single entity, Person. When spring-boot runs it takes those entity definitions and creates an non-persistentH2 in-memory H2 embedded database. This data repository is offered by the GraphQL services as a GraphQL API found at http://localhost:8080/
 
 ## Project Structure
 There aren't many files to this project which is quite impressive considering this example starts up a GraphQL service and serves dummy data from an H2 embedded database.
@@ -63,25 +82,6 @@ type Person {
 }
 ```
 
-## Exploring the GraphQL Service
-In addition to a GraphQL service and API, this project starts up two graphical interfaces, GraphiQL and H2-Console to play around with.
-
-### GraphiQL 
-A web console that can be used to explore the schema and test querying the GraphQL API.
-Found at: http://localhost:8080
-
-The left-hand pane is used to input your client-side GraphQL queries. The right-hand pane displays the result returned back from this GraphQL service.
-
-![alt GraphiQL](src/docs/example-query.png)
-
-### H2-Console 
-
-A web console to manage the H2 in-memory database. Found at: http://localhost:8080/h2-console (login credentials are found in [application.properites](src/main/resources/application.properties))
-
-![alt H2-Console](src/docs/h2-console.png)
-
-The example defines a basic JPA annontated data model containing a single entity, Person. When spring-boot runs it takes those entity definitions and creates an non-persistentH2 in-memory H2 embedded database. This data repository is offered by the GraphQL services as a GraphQL API found at http://localhost:8080/
-
 ## Simplifying Repository Definitions
 To reduce boiler-plate CRUD code, this example takes advantage of the spring framework's CrudRepository class. 
 
@@ -112,7 +112,7 @@ Remove the H2 dependency and add:
     <groupId>com.oracle</groupId>
     <artifactId>ojdbc7</artifactId>
     <version>12.1.0.1</version>
-</dependency>#
+</dependency>
 ```
 
 ***application.properties***
