@@ -132,5 +132,6 @@ spring.jpa.show-sql=true
 
 **Note:** be very careful not to blat an existing db schema by ensuring ```spring.jpa.hibernate.ddl-auto=none``` is included as above.
 
- 
+## License
+For all files in this repository that don't contain explicit licensing, the MIT license then applies. See the accompanying LICENSE for more details.
 
