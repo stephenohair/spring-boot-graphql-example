@@ -24,7 +24,7 @@ The service is ready for use when you see a similar log line as below:
 Use CTRL+C to stop.
 
 ## Exploring the GraphQL Service
-In addition to a GraphQL service and API, this project starts up two graphical interfaces, GraphiQL and H2-Console to play around with.
+In addition to a GraphQL runtime and API, this project starts up two graphical interfaces, GraphiQL and H2-Console to play around with.
 
 ### GraphiQL 
 A web console that can be used to explore the schema and test querying the GraphQL API.
