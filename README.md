@@ -46,7 +46,7 @@ The schema in this example defines the a query object called Person that a consu
 
 **Note:** It's important that the member variables of the Person entity match the Person fields in the GraphQL schema.
 
-```JSON
+```
 schema {
     query: Query
 }
@@ -112,7 +112,7 @@ Remove the H2 dependency and add:
     <groupId>com.oracle</groupId>
     <artifactId>ojdbc7</artifactId>
     <version>12.1.0.1</version>
-</dependency># For 
+</dependency>#
 ```
 
 ***application.properties***
