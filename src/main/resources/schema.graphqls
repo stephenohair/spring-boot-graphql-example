@@ -1,9 +1,30 @@
 schema {
     query: Query
+    mutation: Mutation
 }
 
 type Query {
+    person(id: ID!): Person
     allPeople: [Person]
+}
+
+type Mutation {
+    createPerson(input: CreatePersonInput!) : Person!
+    deletePerson(id: ID!) : Boolean
+    changeName(input: UpdateNameInput!) : Person!
+}
+
+input CreatePersonInput {
+    firstName: String!
+    middleName: String!
+    lastName: String!
+}
+
+input UpdateNameInput{
+    id: ID!
+    firstName: String
+    middleName: String
+    lastName: String
 }
 
 type Person {

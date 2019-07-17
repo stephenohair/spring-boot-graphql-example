@@ -48,7 +48,9 @@ The classes defined in this example are quite small and succinct. They essential
 * **GraphQLSpringBootApp.java** - entry point of the GraphQL service, also defines where the entity model is located 
 * **Person.java** - entity model
 * **PersonRepository.java** - defines the CRUD operations against the Person table in the H2 embedded database 
-* **PersonQuery.java** - defines how the 'allPeople' query returns data back by using the PersonRepository 
+* **PersonQuery.java** - defines how the 'allPeople' query returns data back by using the PersonRepository
+* **PersonMutator.java** - defines how the 'createPerson' mutator persist a new Person and returns data back that Person to confirm success 
+* **CreatePersonInput.java** - this class defines the client **Input** related to the 'createPerson' query request. This is distinct from the object **Type** Person.
 
 The following 3 files are used for configuration, schema definition and dummy data population:
 
@@ -81,6 +83,65 @@ type Person {
     firstName: String!
     middleName: String
     lastName: String!
+}
+```
+
+## Example Queries
+
+Get all people.
+```
+{
+  allPeople {
+    id
+    firstName
+    middleName
+    lastName
+  }
+}
+
+```
+
+Find a person by id.
+```
+{
+  person (id: 3){
+    id,
+    firstName,
+    middleName,
+    lastName
+  }
+}
+```
+
+Create a person.
+```
+mutation {
+  createPerson(input: { firstName: "Tim", middleName: "Alfred", lastName: "Adams"}) {
+    id
+    firstName
+    middleName
+    lastName
+  }
+}
+```
+
+Creating a person using variables.
+```
+mutation CreatePerson($input: CreatePersonInput!) {
+  createPerson(input: $input) {
+    id
+    firstName
+    middleName
+    lastName
+  }
+}
+
+{ # query variables:
+  "input": {
+   "firstName": "Tim", 
+   "middleName": "Alfred", 
+   "lastName": "Adams"
+    }
 }
 ```
 
