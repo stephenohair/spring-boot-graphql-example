@@ -2,9 +2,9 @@
 
 # spring-boot-graphql-example
 
-This is a simple maven-based Java example that uses spring-boot, an H2 embedded in-memory database and Hibernate ORM to stand up a graphql service. This example is a self-contained and ready to play with after running ```mvn spring-boot:run```
+This is a simple maven-based Java example that uses spring-boot, an H2 embedded in-memory database and Hibernate ORM to stand up a graphql service. This example is self-contained and ready to play with after running ```mvn spring-boot:run```
 
-The example defines a basic JPA annontated data model containing a single entity, Person. When spring-boot runs it takes that entity definition and creates an in-memory H2 embedded database with pre-poluated dummy data. The GraphQL service is then started and the H2 data is offered as a queryable repository via GraphQL services as a GraphQL API found at http://localhost:8080/.
+The example defines a basic JPA annontated data model containing a single entity, Person. When spring-boot runs it takes that entity definition and creates an in-memory H2 embedded database with pre-poluated dummy data. The GraphQL service is then started and the H2 data is offered as a queryable repository accessible through the GraphQL API found at http://localhost:8080/.
 
 ## Compiling and Running
 This project was compiled and tested using JDK8 and Maven 3.6.1.
@@ -24,7 +24,7 @@ The service is ready for use when you see a similar log line as below:
 Use CTRL+C to stop.
 
 ## Exploring the GraphQL Service
-In addition to a GraphQL service and API, this project starts up two graphical interfaces, GraphiQL and H2-Console to play around with.
+In addition to a GraphQL runtime and API, this project starts up two graphical interfaces, GraphiQL and H2-Console to play around with.
 
 ### GraphiQL 
 A web console that can be used to explore the schema and test querying the GraphQL API.
@@ -65,7 +65,7 @@ Other files:
  
 
 ## GraphQL Schema
-The schema in this example defines the a query object called Person that a consumer is interested. It also has a query that returns all Person objects called 'allPeople'. 
+The schema in this example defines a query object called Person that a consumer is interested. It also has a query that returns all Person objects called 'allPeople'. 
 
 **Note:** It's important that the member variables of the Person entity match the Person fields in the GraphQL schema.
 
