@@ -83,10 +83,7 @@ The schema in this example defines a query object called Person that a consumer 
 ```
 schema {
     query: Query
-}
-
-type Query {
-    allPeople: [Person]
+    mutation: Mutation
 }
 
 type Person {
@@ -94,6 +91,37 @@ type Person {
     firstName: String!
     middleName: String
     lastName: String!
+    age: Int!
+}
+
+type Query {
+    person(id: ID!): Person
+    allPeople: [Person]
+}
+
+type Mutation {
+    createPerson(input: CreatePersonInput!) : Person!
+    deletePerson(id: ID!) : Boolean
+    updateName(input: UpdateNameInput!) : Person!
+    updateAge(input: UpdateAgeInput!) : Person!
+}
+
+input CreatePersonInput {
+    firstName: String!
+    middleName: String
+    lastName: String!
+}
+
+input UpdateNameInput{
+    id: ID!
+    firstName: String
+    middleName: String
+    lastName: String
+}
+
+input UpdateAgeInput{
+    id: ID!
+    age: Int!
 }
 ```
 
