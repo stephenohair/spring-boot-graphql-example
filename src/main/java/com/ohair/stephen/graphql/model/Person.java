@@ -17,6 +17,7 @@ public class Person {
     private String firstName;
     private String middleName;
     private String lastName;
+    private int age;
 
     
     @Column(name = "id")
@@ -53,5 +54,14 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Column
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

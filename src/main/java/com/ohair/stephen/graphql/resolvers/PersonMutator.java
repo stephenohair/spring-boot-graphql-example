@@ -5,8 +5,11 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.ohair.stephen.graphql.inputs.ChangeNameInput;
+import com.ohair.stephen.graphql.exceptions.InvalidArgumentException;
+import com.ohair.stephen.graphql.exceptions.PersonNotFoundException;
 import com.ohair.stephen.graphql.inputs.CreatePersonInput;
+import com.ohair.stephen.graphql.inputs.UpdateAgeInput;
+import com.ohair.stephen.graphql.inputs.UpdateNameInput;
 import com.ohair.stephen.graphql.model.Person;
 import com.ohair.stephen.graphql.repositories.PersonRepository;
 
@@ -31,12 +34,26 @@ public class PersonMutator implements GraphQLMutationResolver {
         return true;
     }
 
-    public Person changeName(ChangeNameInput i) {
+    public Person updateName(UpdateNameInput i) {
         Person p = repo.findById(i.getId())
                 .orElseThrow(() -> new PersonNotFoundException("person to update not found", i.getId()));
-        Optional.of(i.getFirstName()).ifPresent(fn -> p.setFirstName(fn));
-        Optional.of(i.getMiddleName()).ifPresent(fn -> p.setMiddleName(fn));
-        Optional.of(i.getLastName()).ifPresent(fn -> p.setLastName(fn));
+
+        Optional.ofNullable(i.getFirstName())
+                .orElseThrow(() -> new InvalidArgumentException("firstName cannot be null", i.getFirstName()));
+        Optional.ofNullable(i.getLastName())
+                .orElseThrow(() -> new InvalidArgumentException("lastName cannot be null", i.getLastName()));
+
+        p.setFirstName(i.getFirstName());
+        p.setMiddleName(i.getMiddleName());
+        p.setMiddleName(i.getLastName());
+
+        return repo.save(p);
+    }
+
+    public Person updateAge(UpdateAgeInput i) {
+        Person p = repo.findById(i.getId())
+                .orElseThrow(() -> new PersonNotFoundException("person to update not found", i.getId()));
+        p.setAge(i.getAge());
         return repo.save(p);
     }
 

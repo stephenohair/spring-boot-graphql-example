@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChangeNameInput {
+public class UpdateNameInput {
     private long id;
     private String firstName;
     private String middleName;

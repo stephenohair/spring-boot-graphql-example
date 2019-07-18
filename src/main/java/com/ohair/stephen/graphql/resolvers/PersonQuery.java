@@ -3,6 +3,7 @@ package com.ohair.stephen.graphql.resolvers;
 import org.springframework.stereotype.Component;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.ohair.stephen.graphql.exceptions.PersonNotFoundException;
 import com.ohair.stephen.graphql.model.Person;
 import com.ohair.stephen.graphql.repositories.PersonRepository;
 

@@ -3,6 +3,14 @@ schema {
     mutation: Mutation
 }
 
+type Person {
+    id: ID!
+    firstName: String!
+    middleName: String
+    lastName: String!
+    age: Int!
+}
+
 type Query {
     person(id: ID!): Person
     allPeople: [Person]
@@ -11,12 +19,13 @@ type Query {
 type Mutation {
     createPerson(input: CreatePersonInput!) : Person!
     deletePerson(id: ID!) : Boolean
-    changeName(input: UpdateNameInput!) : Person!
+    updateName(input: UpdateNameInput!) : Person!
+    updateAge(input: UpdateAgeInput!) : Person!
 }
 
 input CreatePersonInput {
     firstName: String!
-    middleName: String!
+    middleName: String
     lastName: String!
 }
 
@@ -27,9 +36,7 @@ input UpdateNameInput{
     lastName: String
 }
 
-type Person {
+input UpdateAgeInput{
     id: ID!
-    firstName: String!
-    middleName: String
-    lastName: String!
+    age: Int!
 }

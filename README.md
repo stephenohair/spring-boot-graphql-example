@@ -49,8 +49,19 @@ The classes defined in this example are quite small and succinct. They essential
 * **Person.java** - entity model
 * **PersonRepository.java** - defines the CRUD operations against the Person table in the H2 embedded database 
 * **PersonQuery.java** - defines how the 'allPeople' query returns data back by using the PersonRepository
-* **PersonMutator.java** - defines how the 'createPerson' mutator persist a new Person and returns data back that Person to confirm success 
-* **CreatePersonInput.java** - this class defines the client **Input** related to the 'createPerson' query request. This is distinct from the object **Type** Person.
+* **PersonMutator.java** - defines how the 'createPerson' mutator persist a new Person and returns data back that Person to confirm success
+
+These classes define the abstracted client **input** types. They are distinct from the **Output** types, Person in this case.
+ 
+* **CreatePersonInput.java**
+* **UpdateNameInput.java**
+* **UpdateAgeInput.java**
+
+These classes define how errors are handled implicitly and explicitly. Their role is to discern between server-side and client-side errors and how they should be displayed.
+
+* **GraphQLErrorAdapter.java**
+* **InvalidArgumentException.java**
+* **PersonNotFoundException.java**
 
 The following 3 files are used for configuration, schema definition and dummy data population:
 
@@ -98,7 +109,6 @@ Get all people.
     lastName
   }
 }
-
 ```
 
 Find a person by id.
@@ -113,19 +123,7 @@ Find a person by id.
 }
 ```
 
-Create a person.
-```
-mutation {
-  createPerson(input: { firstName: "Tim", middleName: "Alfred", lastName: "Adams"}) {
-    id
-    firstName
-    middleName
-    lastName
-  }
-}
-```
-
-Creating a person using variables.
+Creating a person.
 ```
 mutation CreatePerson($input: CreatePersonInput!) {
   createPerson(input: $input) {
@@ -136,12 +134,39 @@ mutation CreatePerson($input: CreatePersonInput!) {
   }
 }
 
-{ # query variables:
+{ # query variables
   "input": {
    "firstName": "Tim", 
    "middleName": "Alfred", 
    "lastName": "Adams"
     }
+}
+```
+
+Update a person's age:
+```
+mutation UpdateAge($input: UpdateAgeInput!) {
+  updateAge(input: $input) {
+    id
+    firstName
+    middleName
+    lastName
+    age
+  }
+}
+
+{ # query variables
+  "input": {
+    "id": 1,
+    "age": 34
+  }
+}
+```
+
+Delete a person.
+```
+mutation {
+  deletePerson(id:1)
 }
 ```
 
@@ -192,6 +217,9 @@ spring.jpa.show-sql=true
 ```
 
 **Note:** be very careful not to blat an existing db schema by ensuring ```spring.jpa.hibernate.ddl-auto=none``` is included as above.
+
+## Useful Links
+* [graphl.org schema documentation](https://graphql.org/learn/schema/)
 
 ## License
 For all files in this repository that don't contain explicit licensing, the MIT license then applies. See the accompanying LICENSE for more details.

@@ -1,4 +1,4 @@
-package com.ohair.stephen.graphql;
+package com.ohair.stephen.graphql.exceptions;
 
 import java.util.List;
 import java.util.Map;
