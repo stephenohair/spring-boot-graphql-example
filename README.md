@@ -247,11 +247,11 @@ spring.jpa.show-sql=true
 **Note:** be very careful not to blat an existing db schema by ensuring ```spring.jpa.hibernate.ddl-auto=none``` is included as above.
 
 ## Useful Links
-* [graphql.org schema documentation](https://graphql.org/learn/schema/)
-* [graphql.org best practices](https://graphql.org/learn/best-practices/)
-* [graphql-java.com getting started with GraphQL and Spring Boot](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/)
-* [pluralsight.com similar tutorial](https://www.pluralsight.com/guides/building-a-graphql-server-with-spring-boot)
-* [graphqlmaster.com input object types as mutation arguments](https://graphqlmastery.com/blog/input-object-type-as-an-argument-for-graphql-mutations-and-queries)
+* [graphql.org - schema documentation](https://graphql.org/learn/schema/)
+* [graphql.org - best practices](https://graphql.org/learn/best-practices/)
+* [graphql-java.com - getting started with GraphQL and Spring Boot](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/)
+* [pluralsight.com - similar tutorial](https://www.pluralsight.com/guides/building-a-graphql-server-with-spring-boot)
+* [graphqlmaster.com - input object types as mutation arguments](https://graphqlmastery.com/blog/input-object-type-as-an-argument-for-graphql-mutations-and-queries)
 
 ## License
 For all files in this repository that don't contain explicit licensing, the MIT license then applies. See the accompanying LICENSE for more details.
