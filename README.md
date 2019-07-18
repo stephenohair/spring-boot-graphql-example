@@ -76,9 +76,9 @@ Other files:
  
 
 ## GraphQL Schema
-The schema in this example defines a query object called Person that a consumer is interested. It also has a query that returns all Person objects called 'allPeople'. 
+The schema in this example defines an output type called Person, some abstracted input types and their pertaining mutations and a few queries. The use of input types like CreatePersonInput is to abstract the actual creation of the Person away from the client, resulting in a separation of concerns between client request and the server response. 
 
-**Note:** It's important that the member variables of the Person entity match the Person fields in the GraphQL schema.
+**Note:** It's important that the member variables of the Person entity match the output type fields of Person in the GraphQL schema. The same applies for input type objects.
 
 ```
 schema {
@@ -198,8 +198,8 @@ mutation {
 }
 ```
 
-## Simplifying Repository Definitions
-To reduce boiler-plate CRUD code, this example takes advantage of the spring framework's CrudRepository class. 
+## Simplifying Boiler-plate Code
+To reduce boiler-plate code, this example takes advantage of the spring framework's CrudRepository class and the lombok framework. 
 
 Defining the PersonRepository code is no more than a four lines of code:
 
@@ -212,6 +212,22 @@ import com.ohair.stephen.graphql.model.Person;
 public interface PersonRepository extends CrudRepository<Person, Long> {
 }
 
+```
+
+Defining a simple input type pojo:
+```
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CreatePersonInput {
+    private String firstName;
+    private String middleName;
+    private String lastName;
+}
 ```
 
 ## Connecting to Other Databases
